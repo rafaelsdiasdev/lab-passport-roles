@@ -1,0 +1,13 @@
+<p><strong>Username: </strong>{{user.username}}</p>
+<p><strong>Role: </strong>{{user.role}}</p>
+{{!-- <p id="edit"><a href="/show/{{user.id}}/edit">Edit</a></p> --}}
+{{!-- {{#if message}} --}}
+<p><a class="error-message" href="/show/{{user.id}}/edit">{{ message }}</a></p>
+{{#equal user.role "Boss"}}
+<p><a class="error-message" href="/painel/boss">{{ checkPainelBoss }}</a></p>
+{{/equal}}
+{{#equal user.role "TA"}}
+<p><a class="error-message" href="/painel/ta">{{ checkPainelTA }}</a></p>
+{{/equal}}
+{{!-- {{/if}} --}}
+<p><a href="/show/">Back</a></p>

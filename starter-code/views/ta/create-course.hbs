@@ -1,0 +1,26 @@
+<h2>Create a new Course</h2>
+
+<form action="/painel/ta/create-course" method="POST" id="form-container">
+  <label for="name">New Course:</label>
+  <input id="name" type="text" name="name" placeholder="Web Development">
+  <br><br>
+  <label for="description">Description:</label>
+  <input id="description" type="text" name="description" placeholder="Course Description">
+  <br><br>
+  <label for="teacher">Teacher</label>
+  <select name="teacher" id="">
+    {{!-- {{#each role.enum}} --}}
+    <option selected value="JOC">JOC</option>
+    <option value="Heitor">Heitor</option>
+    <option value="Danilo">Danilo</option>
+    {{!-- {{/each}} --}}
+  </select>
+
+  {{#if message}}
+  <div class="error-message"><strong style="color: red">{{ message }}</strong></div>
+  {{/if}}
+  <br><br>
+
+  <button>Create course</button>
+</form>
+<p><a href="/show/">Back</a></p>

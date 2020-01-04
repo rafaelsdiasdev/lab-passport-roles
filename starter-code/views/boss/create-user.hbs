@@ -1,0 +1,30 @@
+<h2>Signup</h2>
+
+<form action="/painel/boss/create-user" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <label for="role">Role:</label>
+  <select name="role" id="">
+    {{!-- {{#each role.enum}} --}}
+    <option selected value="Developer">Developer</option>
+    <option value="TA">TA</option>
+    <option value="Boss">Boss</option>
+    {{!-- {{/each}} --}}
+  </select>
+  {{!-- <input type="text" id="role" name="role" placeholder="Your role"> --}}
+  {{#if message}}
+    <div class="error-message"><strong style="color: red">{{ message }}</strong></div>
+  {{/if}}
+  <br><br>
+
+  <button>Create account</button>
+
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/login">Login</a>
+  </p>
+</form>
+<p><a href="/show">Back</a></p>

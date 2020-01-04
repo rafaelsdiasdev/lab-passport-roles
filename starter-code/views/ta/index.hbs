@@ -1,0 +1,6 @@
+<h1>Edit Courses</h1>
+<p><a href="/painel/ta/create-course">New Course</a></p>
+{{#each course}}
+  <a href="/painel/ta/{{this.id}}"><p>{{this.name}}</p></a>
+{{/each}}
+<p><a href="/show">Back</a></p>

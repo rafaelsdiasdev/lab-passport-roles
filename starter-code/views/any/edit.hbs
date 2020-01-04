@@ -1,0 +1,9 @@
+<h2>Edit Users</h2>
+      <form action='/passport/{{this.id}}/edit' method="POST">
+        <div class="form-group">
+          <label for="">Username</label>
+          <input class="form-control" type="text" value="{{this.username}}" name="username">
+        </div>
+        <button class="btn btn-outline-info btn-sm" type="submit">EDIT</button>
+      </form>
+      <p><a class="btn btn-outline-info btn-sm mt-4" href="/show/{{this.id}}">Return</a></p>

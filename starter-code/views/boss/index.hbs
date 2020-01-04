@@ -1,0 +1,8 @@
+<h1>Admin Control</h1>
+<p><a href="/painel/boss">Add User</a></p>
+{{#each user}}
+<form action="/delete/{{this.id}}" method="POST">
+  <p><a href="/show/{{this.id}}">{{this.username}}</a> | <button class="btn btn-outline-info btn-sm" type="submit">REMOVE</button></p>
+</form>
+{{/each}}
+<p><a href="/show/{{this.id}}">Back</a></p>

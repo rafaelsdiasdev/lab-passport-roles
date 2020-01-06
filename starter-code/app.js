@@ -38,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
 passport.use(new FacebookStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,

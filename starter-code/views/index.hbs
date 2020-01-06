@@ -1,5 +1,11 @@
 <h1>{{title}}</h1>
 <p><a href="/login">{{login}}</a></p>
+{{#if user.name}}
+<p><a href="/show/{{user.id}}">{{user.name}}</a></p>
+{{else}}
 <p><a href="/show/{{user.id}}">{{user.username}}</a></p>
+{{/if}}
 <p><a href="/logout">{{logout}}</a></p>
 <p><a href="/show">{{listUsers}}</a></p>
+<p><a href="/students">{{listStudents}}</a></p>
+<p><a href="/courses">Courses</a></p>

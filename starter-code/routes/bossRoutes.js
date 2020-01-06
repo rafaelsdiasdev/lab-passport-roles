@@ -6,8 +6,6 @@ const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10;
 // Add passport 
-const passport = require('passport')
-const ensureAuthenticated = require('./auth')
 const checkRoles = require('./checkRoles')
 
 bossRoutes.get("/painel/boss/create-user", checkRoles('Boss'), (req, res, next) => {
@@ -18,7 +16,7 @@ bossRoutes.get("/painel/boss/", checkRoles('Boss'), (req, res, next)=>{
   const {username} = req.body
   User.find(username)
   .then(user =>{
-    res.render("boss/create-user", {user})
+    res.render("boss/index", {user})
   })
   .catch(err => err)
 })
@@ -62,11 +60,11 @@ bossRoutes.post("/painel/boss/create-user", (req, res, next) => {
     })
 });
 
-bossRoutes.post('/delete/:id/', (req, res, next) => {
+bossRoutes.post('/user/delete/:id/', (req, res, next) => {
   const {id} = req.params;
   User.findByIdAndDelete(id)
   .then((user) => {
-    res.redirect('/paineç/boss');
+    res.redirect('/painel/boss');
   })  
   .catch((err) => console.log(err))
 });

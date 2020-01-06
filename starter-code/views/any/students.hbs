@@ -1,6 +1,7 @@
-<h1>Users</h1>
+<h1>Students</h1>
 {{#each user}}
-<p><a href="/show/{{this.id}}">{{this.username}}</a></p>
+{{#equal this.role "Student"}}
 <p><a href="/show/{{this.id}}">{{this.name}}</a></p>
+{{/equal}}
 {{/each}}
 <p><a href="/">Back</a></p>

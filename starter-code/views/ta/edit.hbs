@@ -1,0 +1,24 @@
+<h1>Edit Course</h1>
+
+<form action="/course/{{this.id}}/edit" method="POST" id="form-container">
+  <label for="name">New Course:</label>
+  <input id="name" type="text" name="name" value="{{this.name}}">
+  <br><br>
+  <label for="description">Description:</label>
+  <input id="description" type="text" name="description" value="{{this.description}}">
+  <br><br>
+  <label for="teacher">Teacher</label>
+  <select name="teacher" id="">
+    <option selected value="{{this.teacher}}">{{this.teacher}}</option>
+    <option value="JOC">JOC</option>
+    <option value="Heitor">Heitor</option>
+    <option value="Danilo">Danilo</option>
+  </select>
+  {{#if message}}
+  <div class="error-message"><strong style="color: red">{{ message }}</strong></div>
+  {{/if}}
+  <br><br>
+
+  <button>Edit course</button>
+</form>
+<p><a href="/painel/ta">Back</a></p>

@@ -4,9 +4,11 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username:  String,
   password: String,
+  facebookID: String,
+  name: String,
   role: {
     type: String,
-    enum : ['Boss', 'Developer', 'TA'],
+    enum : ['Boss', 'Developer', 'TA', "Student"],
     default : 'TA'
   },
 }, {

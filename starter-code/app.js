@@ -14,6 +14,7 @@ const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user")
 const bcrypt = require("bcrypt")
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 
 mongoose
@@ -36,6 +37,35 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+passport.use(new FacebookStrategy({
+  clientID: "480324299342191",
+  clientSecret: "1df175c40c37173d5e08e34850881329",
+  callbackURL: "http://localhost:3002/auth/facebook/callback"
+},
+  (accessToken, refreshToken, profile, done) => {
+    // to see the structure of the data in received response:
+    console.log("Facebook account details:", profile);
+
+    User.findOne({ facebookID: profile.id, role: "Student", name: profile.displayName, username: "none" })
+      .then(user => {
+        console.log(profile)
+        if (user) {
+          done(null, user);
+          return;
+        }
+
+        User.create({ facebookID: profile.id, role: "Student", name: profile.displayName, username: "none" })
+          .then(newUser => {
+            done(null, newUser);
+          })
+          .catch(err => done(err)); // closes User.create()
+      })
+      .catch(err => done(err)); // closes User.findOne()
+  }
+)
+);
+
 app.use(session({
   secret: "our-passport-local-strategy-app",
   resave: true,
@@ -91,7 +121,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-hbs.registerHelper('equal', function(lvalue, rvalue, options) {
+hbs.registerHelper('equal', function (lvalue, rvalue, options) {
   if (arguments.length < 3)
     throw new Error("Handlebars Helper equal needs 2 parameters");
   if (lvalue != rvalue) {

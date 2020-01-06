@@ -9,7 +9,11 @@ router.get('/', (req, res, next) => {
     .then(user => {
       if (req.isAuthenticated()) {
         let loggedUser = user.filter(elem => elem.id === req.session.passport.user)
-        res.render('index', { logout: "Logout", user: loggedUser[0], listUsers: "List Users" });
+        if(loggedUser[0].role === "Student"){
+          res.render('index', { logout: "Logout", user: loggedUser[0], listStudents: "List Students" });
+        }else{
+          res.render('index', { logout: "Logout", user: loggedUser[0], listUsers: "List Users" });
+        }
       } else {
         res.render('index', { login: "Login" });
       }

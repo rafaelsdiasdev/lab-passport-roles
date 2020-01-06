@@ -39,8 +39,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 passport.use(new FacebookStrategy({
-  clientID: "480324299342191",
-  clientSecret: "1df175c40c37173d5e08e34850881329",
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
   callbackURL: "http://localhost:3002/auth/facebook/callback"
 },
   (accessToken, refreshToken, profile, done) => {
